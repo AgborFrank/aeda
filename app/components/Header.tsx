@@ -36,9 +36,9 @@ export default function Header() {
     <>
       {/* Top and Middle Rows - Not Sticky */}
       <header className="w-full bg-white">
-        <div className="mx-auto container px-4 sm:px-6 lg:px-8">
-          {/* Top Row - Contact Banner */}
-          <div className="flex h-12 items-center justify-center bg-blue-600 border-b border-blue-400 px-4">
+        <div className="bg-blue-600 border-b border-blue-400 ">
+           {/* Top Row - Contact Banner */}
+           <div className="flex h-12 items-center justify-center px-4">
             <div className="flex flex-wrap items-center justify-center gap-4 lg:gap-6 text-sm lg:text-base text-blue-100">
               <a href="tel:+237671223624" className="hover:text-white transition-colors">
                 Cameroon: +237671223624
@@ -50,10 +50,13 @@ export default function Header() {
                 Ghana: +233272012612
               </a>
               <a href="mailto:contact@aeda.craigsmunitions.com" className="hover:text-white transition-colors">
-                contact@aeda.craigsmunitions.com
+                contact@aeda.investments.com
               </a>
             </div>
           </div>
+        </div>
+        <div className="mx-auto container px-4 sm:px-6 lg:px-8">
+         
 
           {/* Middle Row - Logo */}
           <div className="flex h-28 items-center justify-center py-4 lg:h-24">
