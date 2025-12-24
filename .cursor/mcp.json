@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "Avicomm": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--project-ref=hdixlkesrqsxjeplltpu"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "sbp_c977acbc00760be978fb43a0a277745a013582cc"
+      }
+    
+     },
+    "shadcn": {
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ]
+    }
+  }
+}

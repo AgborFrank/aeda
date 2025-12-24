@@ -131,35 +131,126 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Information */}
+          {/* GET IN TOUCH */}
           <div>
-            <h3 className="text-base font-bold uppercase tracking-wide text-white">
-              Contact Us
+            <h3 className="text-xl lg:text-2xl font-black uppercase tracking-wide text-white mb-6">
+              GET IN TOUCH
             </h3>
-            <ul className="mt-4 space-y-3 text-base text-gray-200">
-              <li>
-                <span className="font-medium text-white">Email:</span>{' '}
-                <a
-                  href="mailto:info@aedfoundation.org"
-                  className="hover:text-white transition-colors"
-                >
-                  info@aedfoundation.org
-                </a>
-              </li>
-              <li>
-                <span className="font-medium text-white">Phone:</span>{' '}
-                <a
-                  href="tel:+1234567890"
-                  className="hover:text-white transition-colors"
-                >
-                  +1 (234) 567-890
-                </a>
-              </li>
-              <li>
-                <span className="font-medium text-white">Address:</span>
-                <p className="mt-1">123 Development Avenue<br />Accra, Ghana</p>
-              </li>
-            </ul>
+            <div className="space-y-6">
+              {/* Headquarters */}
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 mt-1">
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-white uppercase mb-2">
+                    HEADQUARTERS
+                  </h4>
+                  <p className="text-base text-white">
+                    YAOUNDE, CAMEROON. DOUALA Office: Opposite College DE LA SALLE
+                  </p>
+                </div>
+              </div>
+
+              {/* Cameroon */}
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 mt-1">
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-white mb-1">
+                    Cameroon
+                  </h4>
+                  <p className="text-base text-white">
+                    (+237) 671223634
+                  </p>
+                </div>
+              </div>
+
+              {/* Ghana */}
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 mt-1">
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-white mb-1">
+                    Ghana
+                  </h4>
+                  <p className="text-base text-white">
+                    (+233) 272012612
+                  </p>
+                </div>
+              </div>
+
+              {/* China */}
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 mt-1">
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-white mb-1">
+                    China
+                  </h4>
+                  <p className="text-base text-white">
+                    +8613922742426
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

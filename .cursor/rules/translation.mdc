@@ -1,0 +1,46 @@
+---
+alwaysApply: true
+---
+
+# Translation Rules for Intellygen
+
+## Word Count Matching Rule
+
+
+When translating any text on the Intellygen site, especially titles, headlines, and hero text, ensure the translated version has the **same word count** as the English original.
+-- ALWAYS Create a new translation file for each page and add the file to translations.ts
+
+### Guidelines:
+
+1. **Count words first** - Always count words in both English and translated versions
+2. **Maintain same message** - Keep the core meaning and impact intact
+3. **Use concise alternatives** - Choose shorter/more direct words when needed
+4. **Preserve technical terms** - Keep technical terminology appropriately translated
+5. **Maintain professional tone** - Ensure the translation sounds natural and professional
+6. **Match exact word count** - The final translation must have the same number of words
+7. **Create separate translation file for each page** - Every page should have its independent translation file
+### Example:
+
+**English:** "Build better Startups, Scalable, and AI solutions — faster" (8 words)
+
+**French:** "Créez de meilleures Startups, Scalables et IA — plus vite" (8 words)
+
+### Why This Matters:
+
+- ✅ **Consistent visual layout** across languages
+- ✅ **Maintains design integrity** 
+- ✅ **Ensures equal impact** in both languages
+- ✅ **Professional presentation** 
+- ✅ **Better user experience**
+
+### Implementation:
+
+- Always check word count before finalizing translations
+- If word count doesn't match, revise with alternative phrasing
+- Prioritize message clarity over literal translation
+- Test both versions for visual consistency
+
+---
+
+*This rule ensures that all translations maintain the same visual and textual impact across English and French versions of the Intellygen website.*
+

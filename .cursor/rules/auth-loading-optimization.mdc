@@ -1,0 +1,210 @@
+# Authentication Loading State Optimization Rules
+
+## Overview
+This rule ensures that authentication loading states are properly optimized to prevent unnecessary loading spinners when users switch between browser tabs or when authentication state changes occur.
+
+## Core Principles
+
+### 1. **Auth Context Optimization**
+- **NEVER** set `loading` to `false` in auth state change handlers
+- **ALWAYS** use throttling for auth state change handlers (minimum 1000ms)
+- **ALWAYS** filter auth events to only respond to meaningful events:
+  - `SIGNED_IN`
+  - `SIGNED_OUT` 
+  - `TOKEN_REFRESHED`
+- **NEVER** respond to tab focus events or `INITIAL_SESSION` events
+
+### 2. **Account Layout Loading Logic**
+- **ALWAYS** use conditional loading logic: `if (authLoading || (loading && !accountData))`
+- **NEVER** use: `if (authLoading || loading)` - this causes loading on tab focus
+- **ALWAYS** implement account data caching to prevent unnecessary re-fetching
+- **ALWAYS** check if account data exists for current user before fetching
+
+### 3. **Account Data Caching**
+```typescript
+// ALWAYS implement this pattern in account layouts
+if (accountData && accountData.userProfile?.id === user.id) {
+  setLoading(false);
+  return;
+}
+```
+
+### 4. **useEffect Dependencies**
+- **ALWAYS** include `accountData` in useEffect dependencies for account layouts
+- **ALWAYS** prevent multiple initializations with refs or state flags
+
+## Implementation Requirements
+
+### Auth Context Pattern
+```typescript
+// ✅ CORRECT - Optimized auth context
+const handleAuthStateChange = throttle(async (event: string, session: Session | null) => {
+  if (!hasInitialized) return;
+  
+  if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
+    setSession(session);
+    setUser(session?.user ?? null);
+    // Don't set loading to false here - prevents flickering
+  }
+}, 1000);
+```
+
+### Account Layout Pattern
+```typescript
+// ✅ CORRECT - Optimized loading logic
+if (authLoading || (loading && !accountData)) {
+  return <LoadingSpinner />;
+}
+
+// ❌ WRONG - Causes loading on tab focus
+if (authLoading || loading) {
+  return <LoadingSpinner />;
+}
+```
+
+### Account Data Fetching Pattern
+```typescript
+// ✅ CORRECT - Cached account data fetching
+useEffect(() => {
+  async function fetchAccountData() {
+    if (!user) {
+      setLoading(false);
+      return;
+    }
+
+    // Don't refetch if we already have data for this user
+    if (accountData && accountData.userProfile?.id === user.id) {
+      setLoading(false);
+      return;
+    }
+
+    // ... fetch logic
+  }
+
+  if (!authLoading) {
+    fetchAccountData();
+  }
+}, [user, authLoading, router, accountData]); // Include accountData in dependencies
+```
+
+## Account Types Coverage
+
+### Required for ALL Account Types:
+- **Talent Account** (`/acc/talent/layout.tsx`)
+- **Organization Account** (`/acc/organization/layout.tsx`) 
+- **Employer Account** (`/acc/employer/layout.tsx`)
+- **Main Account Layout** (`/acc/layout.tsx`)
+
+### Implementation Checklist:
+- [ ] Auth context uses throttled event handlers
+- [ ] Auth context only responds to meaningful events
+- [ ] Account layout has caching logic
+- [ ] Account layout uses conditional loading logic
+- [ ] useEffect includes accountData in dependencies
+- [ ] No setLoading(false) in auth state change handlers
+
+## Anti-Patterns to AVOID
+
+### ❌ **NEVER DO THESE:**
+
+1. **Unfiltered Auth State Changes:**
+```typescript
+// ❌ WRONG - Responds to all events including tab focus
+supabase.auth.onAuthStateChange(async (event, session) => {
+  setSession(session);
+  setUser(session?.user ?? null);
+  setLoading(false); // This causes flickering
+});
+```
+
+2. **Always Show Loading:**
+```typescript
+// ❌ WRONG - Shows loading on tab focus
+if (authLoading || loading) {
+  return <LoadingSpinner />;
+}
+```
+
+3. **No Caching:**
+```typescript
+// ❌ WRONG - Always fetches account data
+useEffect(() => {
+  fetchAccountData();
+}, [user, authLoading, router]);
+```
+
+4. **Missing Dependencies:**
+```typescript
+// ❌ WRONG - Missing accountData dependency
+}, [user, authLoading, router]);
+```
+
+## Testing Requirements
+
+### Before Implementing Any Account Type:
+1. **Test Tab Switching**: Switch between tabs multiple times - no loading should appear
+2. **Test Auth Events**: Login/logout should work without loading flickers
+3. **Test Data Caching**: Account data should not re-fetch unnecessarily
+4. **Test Performance**: No excessive API calls on tab focus
+
+### Validation Checklist:
+- [ ] No loading spinner on tab focus
+- [ ] Smooth authentication flow
+- [ ] Cached account data
+- [ ] No excessive API calls
+- [ ] Proper error handling
+
+## Maintenance Rules
+
+### When Adding New Account Types:
+1. **ALWAYS** follow the established patterns
+2. **ALWAYS** implement caching logic
+3. **ALWAYS** use conditional loading logic
+4. **ALWAYS** test tab switching behavior
+5. **ALWAYS** verify no unnecessary API calls
+
+### When Modifying Auth Context:
+1. **NEVER** remove throttling
+2. **NEVER** remove event filtering
+3. **NEVER** add setLoading(false) to auth state changes
+4. **ALWAYS** test with all account types
+
+### When Modifying Account Layouts:
+1. **ALWAYS** maintain caching logic
+2. **ALWAYS** maintain conditional loading logic
+3. **ALWAYS** include accountData in dependencies
+4. **ALWAYS** test tab switching behavior
+
+## Emergency Fixes
+
+### If Loading States Appear on Tab Focus:
+1. Check auth context for `setLoading(false)` in state change handlers
+2. Verify account layout uses conditional loading logic
+3. Ensure caching logic is implemented
+4. Check useEffect dependencies include accountData
+
+### Quick Debug Steps:
+1. Add console.log to auth state change handler
+2. Check if events are being filtered properly
+3. Verify throttling is working
+4. Test with different account types
+
+## Success Criteria
+
+### ✅ **Working Correctly When:**
+- No loading spinners appear when switching tabs
+- Authentication works smoothly without flickers
+- Account data is cached and not re-fetched unnecessarily
+- All account types (talent, organization, employer) work consistently
+- Performance is optimized with minimal API calls
+
+### ❌ **Needs Fix When:**
+- Loading spinners appear on tab focus
+- Authentication causes page refreshes
+- Account data is fetched on every tab switch
+- Different account types behave differently
+- Excessive API calls or loading states
+
+---
+
+**Remember**: This rule prevents the common issue where authentication loading states appear every time a user switches browser tabs, providing a smooth and professional user experience across all account types.

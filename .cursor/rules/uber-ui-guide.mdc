@@ -1,0 +1,117 @@
+---
+title: Uber Base Agent Rules
+source: https://base.uber.com/6d2425e9f/p/294ab4-base-design-system
+updated: 2025-11-11
+alwaysApply: true
+---
+
+# Agent Rules — Uber Base Design Alignment
+
+These rules translate the Uber Base Design System into concrete expectations for all UI, UX, and content deliverables across the Dropme platform. Follow them whenever proposing designs, building components, or crafting copy.
+
+## 1. Core Principles
+
+- **Human & Direct**: Every interface and piece of content must feel approachable yet decisive, reflecting Uber’s confident voice.
+- **Purposeful Simplicity**: Reduce cognitive load by stripping away visual noise. Only introduce new patterns when the Base system cannot cover the use case.
+- **Consistency First**: Default to Base tokens, components, and interaction patterns. Derivations require rationale and documentation.
+- **Scalable Choices**: Make decisions that work at global scale: localization, performance, accessibility, and maintainability are non‑negotiable.
+
+## 2. Visual Foundations
+
+- **Color Tokens**  
+  - Use semantic Base tokens (`content.primary`, `background.primary`, `border.emphasis`, etc.). Do not hardcode hex values.  
+  - Ensure minimum contrast ratio of 4.5:1 for text and 3:1 for UI elements. Validate error and warning states against WCAG AA.
+- **Typography**  
+  - Apply type styles from Base scale (e.g., `display-02`, `heading-03`, `body-02`). Never invent font sizes; map variants to component props.  
+  - Maintain typographic hierarchy: one display style per view, limited heading levels per section, consistent line-height per token.
+- **Spacing & Layout**  
+  - Adhere to the 8‑pt grid. Spacing decisions must be expressed in multiples of 4/8 and match Base spacing tokens (`space-100`, `space-200`, etc.).  
+  - Constrain layouts to Base breakpoints: `small ≤ 600px`, `medium 601-1024px`, `large ≥ 1025px`. Test fluid resizing between breakpoints.
+- **Elevation & Surfaces**  
+  - Use Base elevation tokens (`shadow-01` … `shadow-08`) to communicate depth. Surfaces must follow background tokens and pair with matching borders or dividers.  
+  - Never stack more than two elevation levels on one screen without justification.
+
+## 3. Components & Patterns
+
+- **Component Usage**  
+  - Source all primitives from Base (Buttons, Inputs, Tabs, Modals, Table, etc.).  
+  - Before extending, verify Base variants (size, emphasis, destructive, quiet). Document deviations with rationale and design spec.
+- **States**  
+  - Implement complete state coverage: default, hover, active/pressed, focus, disabled, loading, error. Follow Base motion duration (`100ms–300ms`) and opacity/scale guidelines.  
+  - Surface focus rings that meet contrast requirements and match Base focus token.
+- **Navigation**  
+  - Follow Base nav patterns: primary top navigation, secondary tabs/side rails. Mobile navigation must collapse into `AppBar + Drawer` consistent with Base behavior.  
+  - Breadcrumbs required when depth > 2. Preserve consistent ordering of actions.
+- **Forms**  
+  - Inputs must include labels, helper text, inline validation, and error messaging aligned to Base FormField component.  
+  - Group related inputs with Base `FormGroup`; maintain vertical rhythm (24px between fields, 40px between sections).
+- **Cards & Panels**  
+  - Use Base Card with designated padding tokens. Align iconography to 20px grid.  
+  - For data density, switch to Base Table/List components instead of shrinking padding ad hoc.
+
+## 4. Interaction & Motion
+
+- **Animations**  
+  - Apply Base easing curves (`standard`, `accelerate`, `decelerate`). Durations: micro-interactions 100–150ms, transitions 200–300ms, entrance/exit 300–400ms.  
+  - Respect reduced-motion preferences; provide non-animated fallback states.
+- **Feedback**  
+  - Loading: use Base skeletons/spinners. Always pair indefinite spinners with contextual messaging.  
+  - Success/error: pair color change with iconography or text for accessible reinforcement.
+- **Touch & Pointer**  
+  - Hit targets ≥ 44px. Provide hover + focus states. Support full keyboard navigation (Tab, Shift+Tab, Enter, Space, Arrow keys where applicable).
+
+## 5. Accessibility
+
+- **Semantic Structure**: Use semantic HTML. Ensure heading order, landmark roles, ARIA attributes only when necessary.  
+- **Contrast & Readability**: Validate color combinations with automated checks. Maintain minimum 16px base font size, adjust with rem units.  
+- **Assistive Support**: Provide descriptive labels, `aria-live` for async updates, and skip-to-content links on complex views.  
+- **Testing**: Run automated audits (Lighthouse/AXE) and manual keyboard + screen reader checks per feature.
+
+## 6. Content Strategy
+
+- **Voice & Tone**  
+  - Voice: confident, direct, human.  
+  - Tone adjustments: supportive for problem-solving flows, celebratory for milestones, neutral for instructions.
+- **Clarity Guidelines**  
+  - Lead with the outcome or primary value. Use active verbs. Keep sentences ≤ 20 words when possible.  
+  - Replace jargon with plain language unless addressing a specialist audience; provide definitions when unavoidable.
+- **Consistency**  
+  - Align with Base terminology (e.g., “Trips,” “Drivers,” “Earn,” “Support”). Maintain CTA standards: “Get started,” “See details,” “Contact support.”  
+  - Follow headline capitalization rules: sentence case for body copy, title case for marketing hero text when specified.
+- **Localization Readiness**  
+  - Write strings expecting translation parity: avoid idioms, ensure placeholders are descriptive, and provide translator notes when context is unclear.  
+  - Respect the Intellygen word-count parity rule when delivering translations (see workspace translation guidelines).
+- **Microcopy & Messaging**  
+  - Error messages: state what happened, why (when known), and how to fix it.  
+  - Empty states: pair concise explanation with a progressive CTA.  
+  - Tooltips: single sentence, direct instruction or clarification.
+
+## 7. Implementation Guardrails
+
+- **Design Handoff**: Each feature must include component mapping (Base component + variant), spacing specification, and responsive breakpoints.  
+- **Token Usage**: Import from Base theme tokens or the tailored theme layer. No inline CSS overrides beyond one-off layout utilities.  
+- **Themability**: Prepare for dark mode by relying on semantic tokens rather than static colors.  
+- **Performance**: Prefer Base lazy-loading patterns (e.g., skeletons, modularized component imports). Optimize images with responsive sources and Base media guidelines.
+
+## 8. Process & QA
+
+- **Design Review**: Before implementation, verify screens against this rule set, Base documentation, and accessibility checklist.  
+- **Documentation**: Update design specs and component stories whenever patterns evolve. Record deviations with approval from design leadership.  
+- **Testing**:  
+  - Visual regression via Storybook/Playwright per component.  
+  - Accessibility audits on staging.  
+  - Content review for voice/tone alignment and localization readiness.
+
+## 9. Checklist for Agents
+
+1. Confirm Base component/token coverage before proposing custom elements.  
+2. Validate layout against 8‑pt grid and responsive breakpoints.  
+3. Check color contrast and typographic hierarchy.  
+4. Ensure all interaction states and motion specs are defined.  
+5. Review copy for voice, clarity, consistency, and translation readiness.  
+6. Run accessibility and performance considerations prior to handoff.  
+7. Document any exception with rationale and include link to approved spec.
+
+By adhering to these rules, agents ensure every new artifact aligns with Uber’s Base Design System while meeting Dropme’s product needs.
+
+
