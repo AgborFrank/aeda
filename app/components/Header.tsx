@@ -56,12 +56,32 @@ export default function Header() {
           </div>
         </div>
         <div className="mx-auto container px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 grid-cols-2 gap-6  mt-4">
+            <div className="col-span-2">
+              <Link href="/african-economic-development-week" className="hover:opacity-80 transition-opacity">
+                <Image src="/img/BUSINESS-scaled.webp" alt="AEDA Logo" width={450} height={300} className="w-full h-auto object-contain" />
+              </Link>
+            </div>
+            <div className="col-span-1">
+              <Link href="/economic-development-councils" className="hover:opacity-80 transition-opacity flex flex-col items-center justify-center">
+                <Image src="/img/box1w.webp" alt="AEDA Logo" width={500} height={300} className="w-full h-auto object-contain" />
+                <span className="text-black text-lg font-bold mt-2">Get Access</span> 
+              </Link>
+            </div>
+            <div className="col-span-1">
+              <Link href="/apsim" className="hover:opacity-80 transition-opacity flex flex-col items-center justify-center">
+                <Image src="/img/box1wp.webp" alt="AEDA Logo" width={500} height={300} className="w-full h-auto object-contain" />
+                <span className="text-black text-lg font-bold mt-2">Get Access</span> 
+              </Link>
+            </div>
+           
+          </div>
          
 
           {/* Middle Row - Logo */}
           <div className="flex h-28 items-center justify-center py-4 lg:h-24">
             <Link href="/">
-              <Image src="/img/aedalogosmall.webp" alt="AEDA Logo" width={250} height={100} className="h-10 w-10 lg:h-24 lg:w-62 object-contain" />
+              <Image src="/img/aedalogosmall.webp" alt="AEDA Logo" width={250} height={100} className="h-24 w-62lg:h-24 lg:w-62 object-contain" />
             </Link>
           </div>
         </div>
@@ -95,10 +115,10 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <div className="flex w-full items-center justify-between lg:hidden">
-            <span className="text-base font-bold text-black">Menu</span>
+            <span className="text-base font-bold text-white">Menu</span>
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 text-gray-700 transition-colors hover:text-black focus:outline-none dark:text-gray-300 dark:hover:text-white"
+              className="inline-flex items-center justify-center p-2 text-white transition-colors hover:text-white focus:outline-none dark:text-gray-300 dark:hover:text-white"
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
             >
@@ -127,7 +147,7 @@ export default function Header() {
             isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <nav className="border-t border-gray-200 py-4 dark:border-gray-700">
+          <nav className="border-t border-white py-4">
             <div className="flex flex-col space-y-1">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href));
@@ -136,10 +156,10 @@ export default function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`px-4 py-3 text-lg font-bold tracking-wide transition-colors ${
+                    className={`px-4 py-2 text-sm font-bold tracking-wide transition-colors ${
                       isActive
-                        ? 'text-black dark:text-white'
-                        : 'text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white'
+                        ? 'text-white'
+                        : 'text-white hover:text-white'
                     }`}
                   >
                     {link.label}

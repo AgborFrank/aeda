@@ -24,22 +24,26 @@ const defaultSlides: Slide[] = [
     titleLine2: 'INVESTMENTS',
     subtitle: 'We help you identify the most profitable sectors with high returns on investment.',
     backgroundColor: '#4A7C7E', // Muted teal
+    backgroundImage: '/img/photo-output-15-1024x766.jpeg',
   },
   {
     title: 'CREATING SUSTAINABLE PARTNERSHIPS FOR GLOBAL IMPACT',
     titleLine2: 'ACROSS AFRICA',
     subtitle: 'Win-Win Partnerships can go a long way to boost your business. We connect you to like-minded individuals who will help you grow.',
     backgroundColor: '#4A7C7E',
+    backgroundImage: '/img/media_115c4b2305f5264bbc93077034e1fbfe1bcef9036.jpeg',
   },
   {
     title: 'YOUR GATEWAY TO DOING BUSINESS IN AFRICA',
     subtitle: 'Accelerating growth in Africa and Economic development in the continent.',
     backgroundColor: '#4A7C7E',
+    backgroundImage: '/img/494506511_1247418000724813_1646496292546038084_n.jpeg',
   },
   {
     title: 'BUILDING STRATEGIC PARTNERSHIPS',
     subtitle: 'Creating collaborative networks that drive innovation and economic prosperity.',
     backgroundColor: '#4A7C7E',
+    backgroundImage: '/img/494506511_1247418000724813_1646496292546038084_n.jpeg',
   },
 ];
 
@@ -100,12 +104,12 @@ export default function HeroSlider({ slides = defaultSlides }: HeroSliderProps) 
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8">
         <div className="text-center text-white max-w-4xl">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl font-bold uppercase mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black uppercase mb-4 leading-tight">
             {currentSlideData.title}
             {currentSlideData.titleLine2 && (
               <>
                 <br />
-                {currentSlideData.titleLine2}
+                
               </>
             )}
           </h1>

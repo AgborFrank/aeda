@@ -1,5 +1,5 @@
 import Link from 'next/link';
-
+import Image from 'next/image';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -15,10 +15,9 @@ export default function Footer() {
   const resources = [
     { href: '/contact', label: 'Contact Us' },
     { href: '/faqs', label: 'FAQs' },
-    { href: '/careers', label: 'Careers' },
     { href: '/partners', label: 'Partners' },
-    { href: '/press', label: 'Press' },
-    { href: '/privacy', label: 'Privacy Policy' },
+    { href: '/news-hub', label: 'Our Blog' },
+ 
   ];
 
   const socialLinks = [
@@ -70,10 +69,7 @@ export default function Footer() {
               href="/"
               className="flex items-center space-x-2 text-xl font-bold text-white transition-colors hover:opacity-80 mb-4"
             >
-              <div className="flex h-10 w-10 items-center justify-center">
-                <span className="text-lg font-bold">AEDA</span>
-              </div>
-              <span>AED Foundation</span>
+              <Image src="/img/logo1-480x480.webp" alt="AEDA Logo" width={450} height={300} className="w-full h-auto object-contain" />
             </Link>
             <p className="mt-4 text-base text-gray-200">
               Empowering Economic Development Across Africa through strategic partnerships, investment, and sustainable growth initiatives.
@@ -258,28 +254,9 @@ export default function Footer() {
         <div className="mt-12 border-t border-[#3d2510] pt-8">
           <div className="flex flex-col items-center justify-between space-y-4 sm:flex-row sm:space-y-0">
             <p className="text-base text-gray-200">
-              &copy; {currentYear} AED Foundation. All rights reserved.
+              &copy; {currentYear} AEDA Investment. All rights reserved.
             </p>
-            <div className="flex space-x-6 text-base text-gray-200">
-              <Link
-                href="/terms"
-                className="hover:text-white transition-colors"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                href="/privacy"
-                className="hover:text-white transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/sitemap"
-                className="hover:text-white transition-colors"
-              >
-                Sitemap
-              </Link>
-            </div>
+            
           </div>
         </div>
       </div>
