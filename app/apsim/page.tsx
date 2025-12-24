@@ -1,4 +1,4 @@
-import APSIMHero from '../components/apsim/APSIMHero';
+
 import APSIMAbout from '../components/apsim/APSIMAbout';
 import APSIMObjective from '../components/apsim/APSIMObjective';
 import APSIMFeatures from '../components/apsim/APSIMFeatures';

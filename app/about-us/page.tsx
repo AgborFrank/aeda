@@ -1,7 +1,7 @@
-import AboutHero from '../components/about/AboutHero';
-import AboutMissionVision from '../components/about/AboutMissionVision';
-import AboutTeam from '../components/about/AboutTeam';
-import AboutMembership from '../components/about/AboutMembership';
+import AboutHero from '../components/About/AboutHero';
+import AboutMissionVision from '../components/About/AboutMissionVision';
+import AboutTeam from '../components/About/AboutTeam';
+import AboutMembership from '../components/About/AboutMembership';
 
 
 export default function AboutUsPage() {
