@@ -8,6 +8,8 @@ import Image from 'next/image';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isEconomicWeekOpen, setIsEconomicWeekOpen] = useState(false);
+  const [isMobileEconomicWeekOpen, setIsMobileEconomicWeekOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -24,7 +26,14 @@ export default function Header() {
   const navLinks = [
     { href: '/', label: 'HOME' },
     { href: '/about-us', label: 'ABOUT US' },
-    { href: '/economic-week', label: 'ECONOMIC WEEK' },
+    { 
+      href: '/economic-week', 
+      label: 'ECONOMIC WEEK',
+      items: [
+        { href: '/economic-week', label: 'African Economic Development Week 2024' },
+        { href: '/african-economic-development-week', label: 'African Economic Development Week 2026' },
+      ]
+    },
     { href: '/projects', label: 'PROJECTS' },
     { href: '/doing-business', label: 'DOING BUSINESS' },
     { href: '/investment-fund', label: 'INVESTMENT FUND' },
@@ -97,6 +106,59 @@ export default function Header() {
           <nav className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-center lg:space-x-6">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href));
+              const hasItems = link.items && link.items.length > 0;
+              
+              if (hasItems) {
+                return (
+                  <div
+                    key={link.href}
+                    className="relative group"
+                    onMouseEnter={() => setIsEconomicWeekOpen(true)}
+                    onMouseLeave={() => setIsEconomicWeekOpen(false)}
+                  >
+                    <button
+                      className={`px-3 py-2 text-sm font-black tracking-wide transition-colors flex items-center gap-1 ${
+                        isActive || link.items.some(item => pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href)))
+                          ? 'text-white dark:text-white'
+                          : 'text-white hover:text-[#eec963] dark:text-gray-400 dark:hover:text-white'
+                      }`}
+                    >
+                      {link.label}
+                      <svg
+                        className={`w-4 h-4 transition-transform ${isEconomicWeekOpen ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    
+                    {/* Dropdown Menu */}
+                    {isEconomicWeekOpen && (
+                      <div className="absolute left-0 top-full mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                        {link.items.map((item) => {
+                          const isItemActive = pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className={`block px-4 py-2 text-sm font-bold tracking-wide transition-colors ${
+                                isItemActive
+                                  ? 'text-[#56290f] bg-[#eec963]/10'
+                                  : 'text-gray-800 hover:text-[#56290f] hover:bg-[#eec963]/10'
+                              }`}
+                            >
+                              {item.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              
               return (
                 <Link
                   key={link.href}
@@ -144,13 +206,66 @@ export default function Header() {
         {/* Mobile Menu */}
         <div
           className={`overflow-hidden transition-all duration-300 ease-in-out lg:hidden ${
-            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            isMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
           <nav className="border-t border-white py-4">
             <div className="flex flex-col space-y-1">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href));
+                const hasItems = link.items && link.items.length > 0;
+                
+                if (hasItems) {
+                  return (
+                    <div key={link.href} className="flex flex-col">
+                      <button
+                        onClick={() => setIsMobileEconomicWeekOpen(!isMobileEconomicWeekOpen)}
+                        className={`px-4 py-2 text-sm font-bold tracking-wide transition-colors flex items-center justify-between ${
+                          isActive || link.items.some(item => pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href)))
+                            ? 'text-white'
+                            : 'text-white hover:text-white'
+                        }`}
+                      >
+                        {link.label}
+                        <svg
+                          className={`w-4 h-4 transition-transform ${isMobileEconomicWeekOpen ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      
+                      {/* Mobile Dropdown Items */}
+                      {isMobileEconomicWeekOpen && (
+                        <div className="pl-6 space-y-1">
+                          {link.items.map((item) => {
+                            const isItemActive = pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));
+                            return (
+                              <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={() => {
+                                  setIsMenuOpen(false);
+                                  setIsMobileEconomicWeekOpen(false);
+                                }}
+                                className={`block px-4 py-2 text-sm font-bold tracking-wide transition-colors ${
+                                  isItemActive
+                                    ? 'text-[#eec963]'
+                                    : 'text-white/80 hover:text-white'
+                                }`}
+                              >
+                                {item.label}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                
                 return (
                   <Link
                     key={link.href}

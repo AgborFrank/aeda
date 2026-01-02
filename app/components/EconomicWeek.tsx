@@ -17,7 +17,7 @@ export default function EconomicWeek() {
             {/* Left Column - Image */}
             <div className="relative w-full h-[500px] lg:h-[700px]">
               <Image
-                src="/img/fly1.webp"
+               src="/img/econweek.webp"
                 alt="The African Economic Development Week"
                 fill
                 className="object-contain"
@@ -26,17 +26,17 @@ export default function EconomicWeek() {
             </div>
 
             {/* Right Column - Content */}
-            <div className="flex flex-col space-y-8">
+            <div className="flex flex-col space-y-4">
               {/* Event Header - Date and Location */}
               <div>
-                <h3 className="text-[#56290f] text-2xl lg:text-3xl font-black uppercase mb-6">
+                <h3 className="text-[#56290f] text-2xl lg:text-3xl font-black uppercase ">
                   YAOUNDE, 24TH – 27TH JULY 2024
                 </h3>
               </div>
 
               {/* Section Title */}
               <div>
-                <h2 className="text-[#56290f] text-3xl lg:text-4xl font-black uppercase mb-6">
+                <h2 className="text-[#56290f] text-3xl lg:text-4xl font-black uppercase ">
                   GENERAL OVERVIEW
                 </h2>
               </div>
