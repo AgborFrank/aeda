@@ -68,7 +68,7 @@ export default function Header() {
           <div className="grid md:grid-cols-4 grid-cols-2 gap-6  mt-4">
             <div className="col-span-2">
               <Link href="/african-economic-development-week" className="hover:opacity-80 transition-opacity">
-                <Image src="/img/BUSINESS-scaled.webp" alt="AEDA Logo" width={450} height={300} className="w-full h-auto object-contain" />
+                <Image src="/img/new.avif" alt="AEDA Logo" width={450} height={300} className="w-full h-[300px] object-contain" />
               </Link>
             </div>
             <div className="col-span-1">

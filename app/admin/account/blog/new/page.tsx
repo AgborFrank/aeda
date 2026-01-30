@@ -9,12 +9,13 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card } from "@/components/ui/card"
 import { Loader2, Save } from "lucide-react"
-import { supabase } from "@/lib/supabase/client"
+import { createClient } from "@/lib/supabase/browser"
 import { ImageUpload } from "@/components/admin/image-upload"
 import type { Editor as TinyMCEEditor } from "tinymce"
 
 export default function NewBlogPostPage() {
   const router = useRouter()
+  const supabase = createClient()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [title, setTitle] = useState("")
@@ -94,6 +95,7 @@ export default function NewBlogPostPage() {
         meta_title: metaTitle || null,
         meta_description: metaDescription || null,
         tags: tagsArray,
+        site: "aeda",
       }
 
       const { data, error: insertError } = await supabase

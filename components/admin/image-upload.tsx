@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Loader2, Upload, X, Image as ImageIcon } from "lucide-react"
-import { supabase } from "@/lib/supabase/client"
+import { createClient } from "@/lib/supabase/browser"
 
 interface ImageUploadProps {
   value: string | null
@@ -22,6 +22,7 @@ export function ImageUpload({
   folder = "",
   disabled = false,
 }: ImageUploadProps) {
+  const supabase = createClient()
   const [uploading, setUploading] = useState(false)
   const [preview, setPreview] = useState<string | null>(value)
   const fileInputRef = useRef<HTMLInputElement>(null)

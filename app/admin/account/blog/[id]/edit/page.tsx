@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card } from "@/components/ui/card"
 import { Loader2, Save, Trash2 } from "lucide-react"
-import { supabase } from "@/lib/supabase/client"
+import { createClient } from "@/lib/supabase/browser"
 import { ImageUpload } from "@/components/admin/image-upload"
 import type { Editor as TinyMCEEditor } from "tinymce"
 
@@ -18,6 +18,7 @@ export default function EditBlogPostPage() {
   const params = useParams()
   const postId = params.id as string
 
+  const supabase = createClient()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
