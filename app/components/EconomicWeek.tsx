@@ -17,7 +17,7 @@ export default function EconomicWeek() {
             {/* Left Column - Image */}
             <div className="relative w-full h-[500px] lg:h-[700px]">
               <Image
-               src="/img/econweek.webp"
+               src="/img/new_1.webp"
                 alt="The African Economic Development Week"
                 fill
                 className="object-contain"
