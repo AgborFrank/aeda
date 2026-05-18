@@ -82,12 +82,8 @@ export default function Header() {
                 <Image src="/img/box1wp.webp" alt="AEDA Logo" width={500} height={300} className="w-full h-auto object-contain" />
                 <span className="text-black text-lg font-bold mt-2">Get Access</span> 
               </Link>
-            </div>
-           
+            </div>         
           </div>
-         
-
-          {/* Middle Row - Logo */}
           <div className="flex h-28 items-center justify-center py-4 lg:h-24">
             <Link href="/">
               <Image src="/img/aedalogosmall.webp" alt="AEDA Logo" width={250} height={100} className="h-24 w-62lg:h-24 lg:w-62 object-contain" />
